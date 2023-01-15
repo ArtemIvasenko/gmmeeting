@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/main.css">
+    <title>Повестки для GM Meeting</title>
+</head>
+<body>
+    <div class="pages">
+        <div class="page active" id="page-hello">
+            <main>
+                <div class="content">
+                    <h1>Добрый день, Артём!</h1>
+                    <h2>Просим Вас заполнить повестку для GM Meeting</h2>
+                    <p>Заполнить повестку необходимо сегодня до 16:00</p>
+                    <button onclick="openPage('form')">Приступить</button> 
+                </div>
+            </main>
+        </div>
+        <div class="page" id="page-form">
+            <main>
+                <div class="content">
+                    <h1>Заполните форму</h1>
+                    <p>Департамент сопровождения бизнеса. Заполнение протокола к GM Meeting.</p>
+                    <br><br>
+                    <form>
+                        <p>
+                            <label for="">Вопросы или задачи, имеющие стратегический характер, которые необходимо внести в протокол в виде поручения.</label>
+                            <div class="ta">
+                                <textarea name="" id="ta1"></textarea>
+                                <div><span class="count" id="count1">0</span>/200</div>
+                            </div>
+                        </p>
+                        <p>
+                            <label for="">Важные риски, проблемы и новости для ExCom.</label>
+                            <div class="ta">
+                                <textarea name=""  id="ta2"></textarea>
+                                <div><span class="count" id="count2">0</span>/200</div>
+                            </div>
+                        </p>
+                    </form>
+                    <button onclick="send()">Отравить</button>
+                </div>
+            </main>
+        </div>
+        <div class="page" id="page-good">
+            <main>
+                <div class="content">
+                    <h1>Сообщение отправлено!</h1>
+                </div>
+            </main>
+        </div>
+    </div>
+    <div class="alert hide">
+		Ошибка! Укажите ответы на все сообщения до 200 символов.
+	</div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <script>
+        function openPage(name) {
+			let pages = $('.pages .page');
+			let body = $('body');
+			
+			pages.addClass('hide');
+			
+
+			setTimeout(() => {  
+				pages.removeClass('hide');
+				pages.removeClass('active');
+				let page = $('#page-'+name);
+				page.addClass("active"); 
+				//body.css('background-image', 'url("images/bg/'+getRandomInt(1,7)+'.jpg")');
+							
+			}, 500);
+
+			
+		}
+
+        $("#ta1").on("change", function(e){
+            $("#count1").html($("#ta1").val().length)
+            if ($("#ta1").val().length > 200) {
+                $("#ta1").addClass('error'); 
+            } else {
+                $("#ta1").removeClass('error'); 
+            }
+        });
+
+        $("#ta2").on("change", function(e){
+            $("#count2").html($("#ta2").val().length)
+            if ($("#ta2").val().length > 200) {
+                $("#ta2").addClass('error'); 
+            } else {
+                $("#ta2").removeClass('error'); 
+            }
+        });
+
+        function showError() {
+			$(".alert").removeClass("hide");
+			setTimeout(() => {  $(".alert").addClass("hide");; }, 2000);
+		}
+
+        function send() {
+            if ($("#ta1").val().length > 200 || $("#ta2").val().length > 200) {
+                
+                showError();
+            } else if ($("#ta1").val().length == 0 || $("#ta2").val().length == 0){
+                
+                showError();
+            } else {
+                openPage("good");
+            }
+        }
+        
+    </script>
+</body>
+</html>

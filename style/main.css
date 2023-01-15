@@ -1,0 +1,99 @@
+* {
+    font-family: "EuclidCircularB",sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-image: url(../img/bg2.jpg);
+    background-position: center;
+    background-size: cover ;
+    width: 100%;
+    min-height: 100vh;
+}
+main {
+    width: 100%;
+    text-align: center;
+    padding: 50px 20px;
+}
+main h1 {
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+main h2 {
+    font-size: 20px;
+    margin-bottom: 15px;
+}
+
+main p {
+    font-size: 16px;
+    margin-bottom: 15px;
+    font-style: italic;
+}
+
+main button {
+    background-color: #dea166;
+    padding: 15px 30px;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    margin-top: 30px;
+}
+
+.pages .page {
+	display: none;
+	position: relative;
+	opacity: 0;
+	transition: 0.5s;
+}
+
+.pages .page.active {
+	display: block;
+	left: 0;
+	opacity: 1;
+}
+.pages .page.hide {
+	opacity: 0;
+}
+
+#page-form label {
+    width: 100%;
+}
+
+#page-form textarea {
+    width: 100%;
+    padding: 5px;
+    height: 100px;
+    margin-top: 5px;
+}
+#page-form textarea.error {
+    border: 3px solid red;
+}
+
+#page-form .ta {
+    position: relative;
+}
+
+#page-form .ta div{
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
+
+.alert {
+	position: fixed;
+	top: 10px;
+	left: 0px;
+	width: 94%;
+	transition: .5s;
+	background: #dea166;
+	color: #fff;
+	font-weight: 600;
+	padding: 5px;
+	margin: 0 3%;
+}
+
+.alert.hide {
+	top: -100px;
+}
