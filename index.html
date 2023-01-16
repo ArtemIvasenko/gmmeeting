@@ -49,6 +49,7 @@
             <main>
                 <div class="content">
                     <h1>Сообщение отправлено!</h1>
+                    <button onclick="close()">Закрыть</button>
                 </div>
             </main>
         </div>
@@ -103,7 +104,6 @@
 
         function send() {
             if ($("#ta1").val().length > 200 || $("#ta2").val().length > 200) {
-                
                 showError();
             } else if ($("#ta1").val().length == 0 || $("#ta2").val().length == 0){
                 
@@ -112,7 +112,9 @@
                 openPage("good");
             }
         }
-        
+        function close(){
+            window.Telegram.WebApp.close();
+        }
     </script>
 </body>
 </html>
